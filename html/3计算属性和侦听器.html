@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>计算属性和侦听器</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.20/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{msg}}
+    <p>
+      {{msg1}}
+    </p>
+  </div>
+  <script>
+    //在浏览器里面调试Vue代码的一个方法是给new Vue附一个变量，就可以进行调试了
+    var arr = 'new test'
+    var app = new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello Vue!!',
+        another: 'another hello Vue'
+      },
+      //侦听器
+      watch: {
+        msg: function (newval,oldval) {
+          console.log('newval is:'+newval)
+          console.log('oldval is:'+oldval)
+        }
+      },
+      //计算属性
+      //watch只负责设定的变量修改，没有设置的变量是不进行更改的。而computed只要function里面的变量只要变更就会修改
+      computed: {
+        msg1: function () {
+          return 'computed:' + this.msg + ',' + this.another + arr
+        }
+      },
+    })
+  </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>列表渲染 Class和Style绑定</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.20/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{msg}}
+    <div v-for="item in list">{{item}}</div>
+    <div v-for="item in list1">
+      <!--Style绑定-->
+      <div v-if="item.age > 20"
+           v-bind:style="styleMsg"
+           v-bind:class="['active','add',{'another':item.age > 20}]">
+        {{item.name}}
+      </div>
+      <div v-else>
+        {{item.name}},{{item.age}}
+      </div>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        msg: 'hello Vue!!',
+        <!--Style绑定-->
+        styleMsg: {
+          color: 'red',
+          <!--阴影背景-->
+          <!--'text-shadow': '0 0 5px #232323',-->
+          <!--阴影背景，另外一种驼峰写法-->
+          textShadow: '0 0 5px green'
+        },
+        list: [1,2,3,4,5],
+        list1: [{
+          name: 'aaa',
+          age: 20
+        },{
+          name: 'bbb',
+          age: 30
+        }]
+      }
+    })
+  </script>
+</body>
+</html>

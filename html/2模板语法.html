@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>模板语法</title>
+  <script src="https://cdn.bootcss.com/vue/2.5.20/vue.min.js"></script>
+  <style>
+    #bg{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="bg">
+    <div>
+      Hello wold!!
+      {{msg}}
+    </div>
+    <div>
+      <!--Vue.js前端计算-->
+      {{ (count + 1) *10}}
+    </div>
+    <!--Vue.js显示html格式的文本-->
+    <div v-html="templete">
+    </div>
+    <div>
+      <!--#绑定data中的变量-->
+      <a v-bind:href="url">百度</a>
+      <!--绑定click事件-->
+      <button type="button" v-on:click="submit()">加数字</button>
+    </div>
+    <div>
+      <!--v-bind另外一种写法-->
+      <a :href="url1">新浪</a>
+      <!--v-on另外一种写法-->
+      <button type="button" @click="submit()">加数字</button>
+    </div>
+  </div>
+  <script>
+    new Vue({
+      el: '#bg',
+      data: {
+        msg: 'Hello Vue!!',
+        count: 0,
+        templete: '<div>hello html!!</div>',
+        url: 'http://www.baidu.com',
+        url1: 'http://www.sina.com.cn'
+      },
+      methods: {
+        submit: function () {
+          //this代表new Vue这个对象
+          this.count ++
+        }
+      }
+    })
+</script>
+</body>
+</html>
